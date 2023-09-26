@@ -45,6 +45,7 @@ BOOL CG23W03MFCDoc::OnNewDocument()
 
 	// TODO: 여기에 재초기화 코드를 추가합니다.
 	// SDI 문서는 이 문서를 다시 사용합니다.
+	Point = CPoint(-100, -100); //MFC에선 초기화를 해줘야 하는 곳 2
 
 	return TRUE;
 }

@@ -8,6 +8,8 @@
 
 class CG23W03MFCDoc : public CDocument
 {
+protected:
+	CPoint Point = CPoint(- 100, -100); //생성자를 찾아가서 초기화 해야하는 경우도 있다.
 protected: // serialization에서만 만들어집니다.
 	CG23W03MFCDoc() noexcept;
 	DECLARE_DYNCREATE(CG23W03MFCDoc)
@@ -17,12 +19,16 @@ public:
 
 // 작업입니다.
 public:
+	//getter, setter는 클래스 내부에서만 변경 가능하여 책임 소재 명확
 	CPoint GetPoint() {
-		return point;
+		return Point; //복사하여 주는 개념
 	}
 	void SetPoint(int x, int y) {
-		point.x = x;
-		point.y = y;
+		Point.x = x;
+		Point.y = y;
+	}
+	void SetPoint(CPoint Point) {
+		this->Point = Point;
 	}
 // 재정의입니다.
 public:
@@ -42,7 +48,6 @@ public:
 #endif
 
 protected:
-	CPoint point = { -100,-100 };
 // 생성된 메시지 맵 함수
 protected:
 	DECLARE_MESSAGE_MAP()

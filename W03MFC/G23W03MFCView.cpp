@@ -60,8 +60,8 @@ void CG23W03MFCView::OnDraw(CDC* pDC)
 		return;
 
 	// TODO: 여기에 원시 데이터에 대한 그리기 코드를 추가합니다.
-	CPoint point = pDoc->GetPoint();
-	pDC->Ellipse(point.x - 30, point.y - 30, point.x + 30, point.y + 30);
+	CPoint p = pDoc->GetPoint();
+	pDC->Ellipse(p.x - 30, p.y - 30, p.x + 30, p.y + 30);
 }
 
 
@@ -113,10 +113,10 @@ void CG23W03MFCView::OnLButtonDown(UINT nFlags, CPoint point)
 	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
 	CClientDC dc(this);
 
-	CG23W03MFCDoc* pDoc = GetDocument();
-	pDoc->SetPoint(point.x, point.y);
-	OnDraw(&dc);
-	Invalidate();
+	//dc.Ellipse(point.x - 30, point.y - 30, point.x + 30, point.y + 30);
+
+	GetDocument()->SetPoint(point);
+	Invalidate(); //다시 그려달라는 요청
 
 	CView::OnLButtonDown(nFlags, point);
 }
