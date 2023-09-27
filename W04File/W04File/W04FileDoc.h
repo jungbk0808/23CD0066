@@ -8,6 +8,22 @@
 
 class CW04FileDoc : public CDocument
 {
+protected:
+	//CPoint Point = CPoint(-100, -100);
+	CArray <CPoint, CPoint&> Points;
+public:
+	int GetCount() { return (int)Points.GetCount(); }
+	CPoint GetPoint(int i) { return Points[i]; }
+	void AddPoint(CPoint p) { 
+		Points.Add(p);
+		SetModifiedFlag();
+	}
+	void Undo() {
+		if (Points.GetCount() > 0) {
+			Points.RemoveAt(Points.GetCount() - 1);
+			SetModifiedFlag();
+		}
+	}
 protected: // serialization에서만 만들어집니다.
 	CW04FileDoc() noexcept;
 	DECLARE_DYNCREATE(CW04FileDoc)
@@ -17,11 +33,6 @@ public:
 
 // 작업입니다.
 public:
-	CPoint GetPoint() { return Point; }
-	void SetPoint(CPoint Point) {
-		this->Point = Point;
-		SetModifiedFlag(); //종료시 데이터 변경됐으면 파일 저장하겠냐 묻기
-	}
 
 // 재정의입니다.
 public:
@@ -41,7 +52,7 @@ public:
 #endif
 
 protected:
-	CPoint Point = CPoint(-100, -100);
+
 // 생성된 메시지 맵 함수
 protected:
 	DECLARE_MESSAGE_MAP()
