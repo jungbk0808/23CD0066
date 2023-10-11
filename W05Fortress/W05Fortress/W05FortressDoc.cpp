@@ -23,6 +23,7 @@
 IMPLEMENT_DYNCREATE(CW05FortressDoc, CDocument)
 
 BEGIN_MESSAGE_MAP(CW05FortressDoc, CDocument)
+	ON_COMMAND(IDM_TARGET, &CW05FortressDoc::OnTarget)
 END_MESSAGE_MAP()
 
 
@@ -47,6 +48,7 @@ BOOL CW05FortressDoc::OnNewDocument()
 	// SDI 문서는 이 문서를 다시 사용합니다.
 	Power = 80;
 	Angle = 70;
+	Target = 500;
 
 	return TRUE;
 }
@@ -138,3 +140,10 @@ void CW05FortressDoc::Dump(CDumpContext& dc) const
 
 
 // CW05FortressDoc 명령
+
+
+void CW05FortressDoc::OnTarget()
+{
+	// TODO: 여기에 명령 처리기 코드를 추가합니다.
+	// 랜덤으로 타겟 위치 생성
+}

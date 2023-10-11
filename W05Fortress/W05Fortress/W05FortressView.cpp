@@ -143,8 +143,20 @@ void CW05FortressView::OnFire()
 
 	CClientDC dc(this);
 
+	CRect rect;
+	GetClientRect(&rect);
+
 	for (int t = 0; t < 100; t++) {
 		CalculateCoordinate(a, p, t, &x, &y);
+
+		y = rect.bottom - GROUND - y;
 		dc.Ellipse(x - 30, y - 30, x + 30, y + 30);
+
+		if (y > rect.bottom - GROUND) break;
+
+		Sleep(50);
+
+		dc.FillSolidRect(rect, RGB(255, 255, 255));
+		DrawBackground(&dc);
 	}
 }
