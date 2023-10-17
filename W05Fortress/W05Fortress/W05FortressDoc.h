@@ -15,6 +15,23 @@ protected:
 public:
 	int GetPower() { return Power; }
 	int GetAngle() { return Angle; }
+	int GetTartget() { return Target; }
+	void SetPower(int p) {
+		if (p > 0 && p < 150) {
+			Power = p;
+			SetModifiedFlag();
+		}
+	}
+	void SetAngle(int a) {
+		if (a > 20 && a < 90) {
+			Angle = a;
+			SetModifiedFlag();
+		}
+	}
+	void SetTarget(int t) {
+		Target = t;
+		SetModifiedFlag();
+	}
 
 protected: // serialization에서만 만들어집니다.
 	CW05FortressDoc() noexcept;

@@ -50,6 +50,8 @@ BOOL CW05FortressDoc::OnNewDocument()
 	Angle = 70;
 	Target = 500;
 
+	srand((unsigned int)time(NULL)); //테스트(디버깅)때는 고정해두고 하는 게 오류찾기 편함
+
 	return TRUE;
 }
 
@@ -63,10 +65,16 @@ void CW05FortressDoc::Serialize(CArchive& ar)
 	if (ar.IsStoring())
 	{
 		// TODO: 여기에 저장 코드를 추가합니다.
+		ar << Angle;
+		ar << Power;
+		ar << Target;
 	}
 	else
 	{
 		// TODO: 여기에 로딩 코드를 추가합니다.
+		ar >> Angle; //순서는 맞춰주기!
+		ar >> Power;
+		ar >> Target;
 	}
 }
 
@@ -146,4 +154,7 @@ void CW05FortressDoc::OnTarget()
 {
 	// TODO: 여기에 명령 처리기 코드를 추가합니다.
 	// 랜덤으로 타겟 위치 생성
+	SetTarget(rand() % 1500 + 100);
+	//Invalidate(); //Doc파일에선 이게 안 됨!
+	UpdateAllViews(NULL);
 }

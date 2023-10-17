@@ -211,6 +211,7 @@
     <None Include="res\W05Fortress.rc2" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="res\bomb.bmp" />
     <Image Include="res\Toolbar.bmp" />
     <Image Include="res\W05Fortress.ico" />
     <Image Include="res\W05FortressDoc.ico" />

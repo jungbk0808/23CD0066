@@ -28,6 +28,7 @@ BEGIN_MESSAGE_MAP(CW05FortressView, CView)
 	ON_COMMAND(ID_FILE_PRINT_DIRECT, &CView::OnFilePrint)
 	ON_COMMAND(ID_FILE_PRINT_PREVIEW, &CView::OnFilePrintPreview)
 	ON_COMMAND(IDM_FIRE, &CW05FortressView::OnFire)
+	ON_WM_KEYDOWN()
 END_MESSAGE_MAP()
 
 // CW05FortressView 생성/소멸
@@ -83,6 +84,10 @@ void CW05FortressView::DrawBackground(CDC* pDC)
 	pDC->LineTo(rect.right, rect.bottom - GROUND);
 
 	CW05FortressDoc* pDoc = GetDocument();
+	int target = pDoc->GetTartget();
+	pDC->Rectangle(target - TARGET_SIZE / 2, rect.bottom - GROUND - TARGET_SIZE,
+		target + TARGET_SIZE / 2, rect.bottom - GROUND);
+
 	CString str;
 	str.Format(L"Angle = %d, Power = %d", pDoc->GetAngle(), pDoc->GetPower());
 	pDC->TextOutW(10, 10, str);
@@ -140,23 +145,77 @@ void CW05FortressView::OnFire()
 
 	int a = pDoc->GetAngle();
 	int p = pDoc->GetPower();
+	int target = pDoc->GetTartget();
 
 	CClientDC dc(this);
 
 	CRect rect;
 	GetClientRect(&rect);
 
+	BeginWaitCursor(); //커서를 로딩 느낌으로
+
+	CDC bmpDC;
+	bmpDC.CreateCompatibleDC(&dc);
+
+	CBitmap bmp;
+	bmp.LoadBitmapW(IDB_BOMB);
+
+	BITMAP info;
+	bmp.GetBitmap(&info);
+
+	CBitmap* old = bmpDC.SelectObject(&bmp);
+
 	for (int t = 0; t < 100; t++) {
 		CalculateCoordinate(a, p, t, &x, &y);
 
 		y = rect.bottom - GROUND - y;
-		dc.Ellipse(x - 30, y - 30, x + 30, y + 30);
+		//dc.Ellipse(x - BOMB_RADIUS, y - BOMB_RADIUS, x + BOMB_RADIUS, y + BOMB_RADIUS);
+		
+		dc.BitBlt(x - info.bmWidth / 2, y - info.bmHeight,
+			info.bmWidth, info.bmHeight,
+			&bmpDC,
+			0, 0,
+			SRCCOPY); //SRCAND는 투명
 
-		if (y > rect.bottom - GROUND) break;
+		if (y > rect.bottom - GROUND) 
+			break;
+
+		if (abs(x - target) < BOMB_RADIUS + TARGET_SIZE / 2 &&
+			y > rect.bottom - GROUND - TARGET_SIZE - BOMB_RADIUS) {
+			MessageBox(L"명중");
+			break;
+		}
 
 		Sleep(50);
 
 		dc.FillSolidRect(rect, RGB(255, 255, 255));
 		DrawBackground(&dc);
 	}
+
+	bmpDC.SelectObject(old);
+
+	EndWaitCursor();
+}
+
+
+void CW05FortressView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
+{
+	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
+	CW05FortressDoc* pDoc = GetDocument();
+	switch (nChar) {
+	case VK_UP:
+		pDoc->SetAngle(pDoc->GetAngle() + 1);
+		break;
+	case VK_DOWN:
+		pDoc->SetAngle(pDoc->GetAngle() - 1);
+		break;
+	case VK_RIGHT:
+		pDoc->SetPower(pDoc->GetPower() + 1);
+		break;
+	case VK_LEFT:
+		pDoc->SetPower(pDoc->GetPower() - 1);
+		break;
+	}
+	Invalidate();
+	CView::OnKeyDown(nChar, nRepCnt, nFlags);
 }

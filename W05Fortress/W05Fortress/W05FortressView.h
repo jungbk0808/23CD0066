@@ -5,6 +5,8 @@
 #pragma once
 
 #define GROUND 50
+#define BOMB_RADIUS 30
+#define TARGET_SIZE 100
 
 class CW05FortressView : public CView
 {
@@ -47,6 +49,7 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	afx_msg void OnFire();
+	afx_msg void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
 };
 
 #ifndef _DEBUG  // W05FortressView.cpp의 디버그 버전
