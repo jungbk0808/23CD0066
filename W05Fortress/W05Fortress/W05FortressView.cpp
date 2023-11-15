@@ -183,6 +183,7 @@ void CW05FortressView::OnFire()
 		if (abs(x - target) < BOMB_RADIUS + TARGET_SIZE / 2 &&
 			y > rect.bottom - GROUND - TARGET_SIZE - BOMB_RADIUS) {
 			MessageBox(L"명중");
+			GetDocument()->OnTarget();
 			break;
 		}
 
