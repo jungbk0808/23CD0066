@@ -13,31 +13,21 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace W11WPFCounter
+namespace W1102WPFLayout
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
-        public CounterViewModel vm = new CounterViewModel();
         public MainWindow()
         {
             InitializeComponent();
-            this.DataContext = vm;
         }
 
-        private void OnAdd(object sender, RoutedEventArgs e)
-        {
-            vm.Value = vm.Value + 1;
-        }
-
-        private void OnSub(object sender, RoutedEventArgs e)
-        {
-            if (vm.Value > 0)
-            {
-                vm.Value = vm.Value - 1;
-            }
-        }
+        //private void OnButton(object sender, RoutedEventArgs e)
+        //{
+        //    MyLabel.Content = "오랜 만입니다";
+        //}
     }
 }
