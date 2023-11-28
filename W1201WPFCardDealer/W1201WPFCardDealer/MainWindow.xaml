@@ -20,32 +20,32 @@
                 x:Name="Card1"
                 Height="400"
                 Stretch="None"
-                Source="Images/ace_of_spades.png"
+                Source="{Binding CardResource[0]}"
                 />
             <Image
                 x:Name="Card2"
                 Height="400"
                 Stretch="None"
-                Source="Images/ace_of_spades.png"
+                Source="{Binding CardResource[1]}"
                 />  
 
             <Image
                 x:Name="Card3"
                 Height="400"
                 Stretch="None"
-                Source="Images/ace_of_spades.png"
+                Source="{Binding CardResource[2]}"
                 />
             <Image
                 x:Name="Card4"
                 Height="400"
                 Stretch="None"
-                Source="Images/ace_of_spades.png"
+                Source="{Binding CardResource[3]}"
                 />
             <Image
                 x:Name="Card5"
                 Height="400"
                 Stretch="None"
-                Source="Images/ace_of_spades.png"
+                Source="{Binding CardResource[4]}"
                 />
         </UniformGrid>
     </DockPanel>

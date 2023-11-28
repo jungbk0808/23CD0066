@@ -13,25 +13,26 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace W1201WPFCardDealer
+namespace W1303WPFMenu
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
-        public CardViewModel vm = new CardViewModel();
         public MainWindow()
         {
             InitializeComponent();
-
-            this.DataContext = vm;
         }
 
-        private void OnDeal(object sender, RoutedEventArgs e)
+        private void SetRed(object sender, RoutedEventArgs e)
         {
-            vm.Shuffle();
+            //MessageBox.Show("빨간색");
+            BackPanel.Background = Brushes.Red;
+
+            //MenuItem item = (MenuItem)sender;
+            //item.IsChecked = true;
+
         }
-        
     }
 }
