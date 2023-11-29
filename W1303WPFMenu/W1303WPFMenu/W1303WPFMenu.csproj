@@ -7,4 +7,14 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Images\moon.png" />
+    <None Remove="moon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\moon.png" />
+    <Resource Include="moon.png" />
+  </ItemGroup>
+
 </Project>

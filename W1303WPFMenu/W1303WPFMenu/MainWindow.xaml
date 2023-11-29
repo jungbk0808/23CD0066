@@ -19,19 +19,33 @@
                     <MenuItem
                         Header="파일(_F)"/>
                 </MenuItem>
+                <MenuItem
+                    Header="열기(_O)..."
+                    Command="Open">
+                    <MenuItem.Icon>
+                        <Image Source="/moon.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
             </MenuItem>
             <MenuItem
                 Header="배경색(_B)">
                 <MenuItem
                     Header="빨간색(_R)"
+                    x:Name="ItemRed"
                     Click="SetRed"/>
                 <MenuItem
-                    Header="녹색(_G)"/>
+                    Header="녹색(_G)"
+                    x:Name="ItemGreen"
+                    Click="SetGreen"/>
                 <MenuItem
-                    Header="파란색(_B)"/>
+                    Header="파란색(_B)"
+                    x:Name="ItemBlue"
+                    Click="SetBlue"/>
                 <Separator/>
                 <MenuItem
-                    Header="흰색(_W)"/>
+                    Header="흰색(_W)"
+                    x:Name="ItemWhite"
+                    Click="SetWhite"/>
             </MenuItem>
         </Menu>
         <StackPanel
