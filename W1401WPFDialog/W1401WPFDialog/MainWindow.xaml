@@ -14,15 +14,21 @@
                 Content="MS 추가"
                 Margin="10"
                 Click="OnAdd"/>
-            <TextBox
+            <!--<TextBox
                 x:Name="Result"
                 DockPanel.Dock="Bottom"
                 IsReadOnly="True"
                 AcceptsReturn="True"
                 VerticalScrollBarVisibility="Auto"
                 Background="#eee"
-                />
-
+                Text="{Binding GundamList}"
+                />-->
+            <ScrollViewer>
+                <TextBlock
+                    DockPanel.Dock="Bottom"
+                    Background="#eee"
+                    Text="{Binding GundamList}"/>
+            </ScrollViewer>
         </DockPanel>
     </Border>
 </Window>

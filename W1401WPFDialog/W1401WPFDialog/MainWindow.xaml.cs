@@ -15,14 +15,14 @@ using System.Windows.Shapes;
 
 namespace W1401WPFDialog;
 
-/// <summary>
-/// Interaction logic for MainWindow.xaml
-/// </summary>
 public partial class MainWindow : Window
 {
+    private GundamViewModel viewModel = new GundamViewModel();
     public MainWindow()
     {
         InitializeComponent();
+
+        this.DataContext = viewModel;
     }
 
     public void OnAdd(object sender, RoutedEventArgs e)
@@ -31,17 +31,6 @@ public partial class MainWindow : Window
         if (g.ShowDialog() != true)
             return;
 
-        Result.Text = $"{g.MSParty}의 {g.MSModel} "
-            + $"{g.MSName}{(HasJongsung(g.MSName) ? "이" : "가")} "
-            + "추가되었습니다.\n"
-            + Result.Text;
-    }
-
-    public bool HasJongsung(string str)
-    {
-        if (str.Length < 1)
-            return true;
-        char last = str[str.Length - 1];
-        return (last - 44032) % 28 != 0 ? true : false;
+        viewModel.Add(new GundamModel(g.MSName, g.MSModel, g.MSParty));
     }
 }
