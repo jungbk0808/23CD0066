@@ -11,7 +11,8 @@
             <Image
                 x:Name="Image"
                 DockPanel.Dock="Right"
-                Margin="10"/>
+                Margin="10"
+                Source="{Binding GundamImage}"/>
             <Button
                 DockPanel.Dock="Bottom"
                 Content="추가"

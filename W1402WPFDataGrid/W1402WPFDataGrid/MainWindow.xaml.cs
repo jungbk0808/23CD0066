@@ -15,6 +15,8 @@ public partial class MainWindow : Window
         InitializeComponent();
         Grid.ItemsSource = viewModel.GundamList;
 
+        this.DataContext = viewModel;
+
         viewModel.GundamList.Add(new GundamModel("건담", "RX-78-2", "연방군"));
         viewModel.GundamList.Add(new GundamModel("자쿠II", "MS-06", "지온군"));
     }
@@ -34,8 +36,10 @@ public partial class MainWindow : Window
     {
         GundamModel g = (GundamModel)Grid.SelectedItem;
 
-        BitmapImage b = new BitmapImage(new Uri($"images/{g.Name}.png",
-            UriKind.RelativeOrAbsolute));
-        Image.Source = b;
+        //BitmapImage b = new BitmapImage(new Uri($"images/{g.Name}.png",
+        //    UriKind.RelativeOrAbsolute));
+        //Image.Source = b;
+
+        viewModel.Select(g);
     }
 }
