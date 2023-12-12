@@ -22,10 +22,26 @@ public class GundamViewModel : INotifyPropertyChanged
     private string _gundamImage = "";
     public string GundamImage { get { return _gundamImage; } }
 
-    public void Select(GundamModel gundam)
+    public void Select(GundamModel? gundam)
     {
+        if (gundam == null)
+            return;
         _gundamImage = $"images/{gundam.Name}.png";
         OnPropertyChanged(nameof(GundamImage));
+    }
+
+    private GundamModel? _gundamSelected = null;
+    private GundamModel? GundamSelected
+    {
+        get { return _gundamSelected; }
+        set
+        {
+            if (_gundamSelected != value)
+            {
+                _gundamSelected = value;
+                Select(value);
+            }
+        }
     }
 
     protected void OnPropertyChanged(string propName = "")

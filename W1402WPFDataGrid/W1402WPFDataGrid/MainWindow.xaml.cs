@@ -32,14 +32,14 @@ public partial class MainWindow : Window
         //Grid.Items.Refresh();
     }
 
-    private void OnSelected(object sender, RoutedEventArgs e)
-    {
-        GundamModel g = (GundamModel)Grid.SelectedItem;
+    //private void OnSelected(object sender, RoutedEventArgs e)
+    //{
+    //    GundamModel g = (GundamModel)Grid.SelectedItem;
 
-        //BitmapImage b = new BitmapImage(new Uri($"images/{g.Name}.png",
-        //    UriKind.RelativeOrAbsolute));
-        //Image.Source = b;
+    //    //BitmapImage b = new BitmapImage(new Uri($"images/{g.Name}.png",
+    //    //    UriKind.RelativeOrAbsolute));
+    //    //Image.Source = b;
 
-        viewModel.Select(g);
-    }
+    //    viewModel.Select(g);
+    //}
 }

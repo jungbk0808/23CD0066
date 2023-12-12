@@ -19,7 +19,7 @@
                 Click="OnAdd"/>
             <DataGrid
                 x:Name="Grid"
-                SelectionChanged="OnSelected"/>
+                SelectedItem="{Binding GundamSelected}"/>
         </DockPanel>
     </Border>
 </Window>
