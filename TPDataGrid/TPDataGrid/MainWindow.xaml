@@ -11,14 +11,15 @@
             <Image
                 x:Name="Image"
                 DockPanel.Dock="Right"
-                Margin="10"/>
+                Margin="10"
+                Source="{Binding IdolImage}"/>
             <Button
                 DockPanel.Dock="Bottom"
                 Content="추가"
                 Click="OnAdd"/>
             <DataGrid
                 x:Name="Grid"
-                SelectionChanged="OnSelected"/>
+                SelectedItem="{Binding IdolSelected}"/>
         </DockPanel>
     </Border>
 </Window>

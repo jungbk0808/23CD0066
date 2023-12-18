@@ -9,6 +9,7 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
         Grid.ItemsSource = viewModel.IdolList;
+        this.DataContext = viewModel;
 
         // TO DO: 하드코딩 지우기
         viewModel.IdolList.Add(new Idol("달", "우주", "기타"));
@@ -24,8 +25,8 @@ public partial class MainWindow : Window
         viewModel.IdolList.Add(new Idol(iw.KName, iw.KGroup, iw.KPosition));
     }
 
-    public void OnSelected(object sender, RoutedEventArgs e)
-    {
-        Image.Source = viewModel.GetImageSource((Idol)Grid.SelectedItem);
-    }
+    //public void OnSelected(object sender, RoutedEventArgs e)
+    //{
+    //    viewModel.Select((Idol)Grid.SelectedItem);
+    //}
 }
