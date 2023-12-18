@@ -22,7 +22,7 @@ public class GundamViewModel : INotifyPropertyChanged
     private string _gundamImage = "";
     public string GundamImage { get { return _gundamImage; } }
 
-    public void Select(GundamModel? gundam)
+    private void Select(GundamModel? gundam)
     {
         if (gundam == null)
             return;
@@ -31,16 +31,16 @@ public class GundamViewModel : INotifyPropertyChanged
     }
 
     private GundamModel? _gundamSelected = null;
-    private GundamModel? GundamSelected
+    public GundamModel? GundamSelected
     {
         get { return _gundamSelected; }
         set
         {
-            if (_gundamSelected != value)
-            {
-                _gundamSelected = value;
-                Select(value);
-            }
+            if (_gundamSelected == value)
+                return;
+            _gundamSelected = value;
+            Select(value);
+            
         }
     }
 
